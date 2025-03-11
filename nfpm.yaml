@@ -1,0 +1,33 @@
+name: verilator
+arch: amd64
+platform: linux
+version: 5.035
+section: devel
+priority: optional
+maintainer: Your Name <your.email@example.com>
+description: |
+  Verilator is a fast, free Verilog HDL simulator.
+  It converts Verilog to a cycle-accurate behavioral model in C++ or SystemC.
+  Verilator is not a traditional simulator, but a compiler.
+vendor: Verilator Project
+homepage: https://www.veripool.org/wiki/verilator
+license: LGPL-3.0
+
+contents:
+  - src: bin/verilator
+    dst: /usr/bin/verilator
+
+depends:
+  - g++
+  - make
+  - perl
+  - libfl2
+  - libfl-dev
+  - zlib1g
+  - zlib1g-dev
+
+conflicts:
+  - verilator
+
+replaces:
+  - verilator

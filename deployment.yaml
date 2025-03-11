@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verilator-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: verilator
+  template:
+    metadata:
+      labels:
+        app: verilator
+    spec:
+      containers:
+      - name: verilator-container
+        image: localhost:5000/verilator-k8s:latest
+        imagePullPolicy: Always
+        command: ["bash", "-c", "verilator -Wall --cc sim/fifo.v --exe sim/sim_main.cpp && tail -f /dev/null"]
+        volumeMounts:
+        - name: workspace-volume
+          mountPath: /workspace
+      volumes:
+      - name: workspace-volume
+        hostPath:
+          path: /srv/verilator/sim
+          type: Directory
