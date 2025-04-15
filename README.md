@@ -2,7 +2,7 @@
 
 ## 🧠 Why Run Verilator on Kubernetes?
 
-Running **Verilator** on **Kubernetes (k8s)** provides a **scalable**, **automated**, and **reproducible** approach to hardware simulation and verification. 
+Running **Verilator** on **Kubernetes (k8s)** provides a **scalable**, **automated**, and **reproducible** approach to hardware simulation and verification.
 
 ### Benefits:
 - **Parallel Execution**: Distribute simulations across multiple nodes to speed up regression testing.
@@ -13,6 +13,61 @@ Running **Verilator** on **Kubernetes (k8s)** provides a **scalable**, **automat
 - **Collaboration**: Bridging the gap between hardware and software teams with modern infrastructure.
 
 Verilator converts Verilog/SystemVerilog into C++/SystemC models, and k8s ensures those simulations are executed efficiently and reliably.
+
+---
+
+📦 Packaging with nfpm
+
+nfpm is a simple tool to create Linux packages like .deb (Debian/Ubuntu) and .rpm (CentOS/Fedora). Instead of manually managing package creation with complex scripts, nfpm lets you define your package metadata and contents in a YAML file.
+
+This is ideal for developers who want to distribute their applications easily across Linux systems without diving deep into low-level packaging tools.
+
+Create nfpm.yaml configuration:
+```yaml
+name: verilator
+arch: amd64
+platform: linux
+version: 5.035
+section: devel
+priority: optional
+maintainer: Your Name <your.email@example.com>
+description: |
+  Verilator is a fast, free Verilog HDL simulator.
+  It converts Verilog to a cycle-accurate behavioral model in C++ or SystemC.
+  Verilator is not a traditional simulator, but a compiler.
+vendor: Verilator Project
+homepage: https://www.veripool.org/wiki/verilator
+license: LGPL-3.0
+
+contents:
+  - src: bin/verilator
+    dst: /usr/bin/verilator
+
+depends:
+  - g++
+  - make
+  - perl
+  - libfl2
+  - libfl-dev
+  - zlib1g
+  - zlib1g-dev
+
+conflicts:
+  - verilator
+
+replaces:
+  - verilator
+```
+
+Build the package:
+```
+nfpm package --config nfpm.yaml --packager deb --target .
+```
+
+Install the package:
+```
+apt-get install ./verilator_5.035_amd64.deb
+```
 
 ---
 
