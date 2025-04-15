@@ -127,7 +127,7 @@ apt-get install ./verilator_5.035_amd64.deb
 
 ---
 
-## 📄 View Verilator Logs
+## View Verilator Logs
 
 1. **Check logs from a specific pod:**
    ```bash
