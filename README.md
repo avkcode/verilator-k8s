@@ -1,6 +1,6 @@
 # Verilator on Kubernetes (k8s)
 
-## Legacy Meets Modernization
+## Modernizing simulation
 
 Companies operating in the semiconductor industry often rely on a "legacy" technology stack — typically CentOS 6 or 7 with outdated package bases, aging infrastructure, and workflows dating back to the mid-2000s. In this space, every mistake can cost millions, so risk aversion is the norm. However, that doesn’t mean modernization should be ignored. Sooner or later, contemporary infrastructure practices and SDLC (Software Development Life Cycle) approaches will find their way into even the most conservative environments.
 
