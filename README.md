@@ -1,10 +1,10 @@
 # Verilator on Kubernetes (k8s)
 
-## 🧩 Legacy Meets Modernization
+## Legacy Meets Modernization
 
 Companies operating in the semiconductor industry often rely on a "legacy" technology stack — typically CentOS 6 or 7 with outdated package bases, aging infrastructure, and workflows dating back to the mid-2000s. In this space, every mistake can cost millions, so risk aversion is the norm. However, that doesn’t mean modernization should be ignored. Sooner or later, contemporary infrastructure practices and SDLC (Software Development Life Cycle) approaches will find their way into even the most conservative environments.
 
-## 🧠 Why Run Verilator on Kubernetes?
+## Why Run Verilator on Kubernetes?
 
 Running **Verilator** on **Kubernetes (k8s)** provides a **scalable**, **automated**, and **reproducible** approach to hardware simulation and verification.
 
@@ -20,7 +20,7 @@ Verilator converts Verilog/SystemVerilog into C++/SystemC models, and k8s ensure
 
 ---
 
-📦 Packaging with nfpm
+Packaging with nfpm
 
 nfpm is a simple tool to create Linux packages like .deb (Debian/Ubuntu) and .rpm (CentOS/Fedora). Instead of manually managing package creation with complex scripts, nfpm lets you define your package metadata and contents in a YAML file.
 
@@ -75,7 +75,7 @@ apt-get install ./verilator_5.035_amd64.deb
 
 ---
 
-## 🛠️ Build & Push the Docker Image
+## Build & Push the Docker Image
 
 1. **Build the Docker image:**
    ```bash
@@ -99,7 +99,7 @@ apt-get install ./verilator_5.035_amd64.deb
 
 ---
 
-## 🚀 Deploy to Kubernetes
+## Deploy to Kubernetes
 
 1. **Deploy using a Kubernetes manifest:**
    ```bash
