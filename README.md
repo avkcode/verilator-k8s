@@ -6,6 +6,16 @@ produce an incredible amount of logs, and those logs are raw
 material for analysis when simulation fails, performance
 shifts, or a regression starts behaving differently.
 
+That matters even more as hardware teams experiment with
+agentic design flows. The arXiv paper "Exploring the
+Agentic Frontier of Verilog Code Generation" (2603.19347v3)
+shows why tool feedback and simulation traces are central:
+agents only improve when they can run checks, read results,
+and recover from failures. Kubernetes gives those loops a
+repeatable place to run.
+
+Reference: https://arxiv.org/html/2603.19347v3
+
 Hardware simulation is easiest to trust when each run is
 repeatable, isolated, and boring to operate. This example
 takes a Verilator regression and runs it as a Kubernetes
