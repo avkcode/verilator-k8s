@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: verilator-router-sim
+  labels:
+    app: verilator-router-sim
+spec:
+  completions: 4
+  parallelism: 2
+  completionMode: Indexed
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  template:
+    metadata:
+      labels:
+        app: verilator-router-sim
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: verilator
+        image: localhost:5000/verilator-k8s:latest
+        imagePullPolicy: IfNotPresent
+        command:
+        - bash
+        - -lc
+        - |
+          set -euo pipefail
+          job_index="${HOSTNAME#verilator-router-sim-}"
+          job_index="${job_index%%-*}"
+          case "${job_index}" in
+            ''|*[!0-9]*)
+              echo "Cannot derive completion index" \
+                "from HOSTNAME=${HOSTNAME}" >&2
+              exit 1
+              ;;
+          esac
+          seed=$((1000 + job_index))
+          echo "Running packet router with SIM_SEED=${seed}"
+          SIM_SEED="${seed}" make -C /sim/sim run
